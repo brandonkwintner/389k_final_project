@@ -9,7 +9,7 @@ Date: May 3, 2020
 
 Project Topic: Powerlifting Personal Records 
 
-URL: http://localhost:3000 ### UPDATE WITH DEPLOYABLE LINK ! ###
+URL: https://cmsc389kfinalproject.herokuapp.com
 
 # New NPM packages used: 
 - Moment.js
