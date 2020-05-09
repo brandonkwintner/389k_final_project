@@ -1,0 +1,40 @@
+<!-- Create a new Powerlifter. -->
+<div id="jumbotron">
+    <div class="jumbotron">
+        <h1 id="header">Add New Powerlifter</h1>
+    
+        <form method="POST" action="/addPowerlifter">
+            <div class="input-field">
+                <input type="text" name="firstname" size="50" placeholder="First Name">
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="lastname" size="50" placeholder="Last Name">
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="gender" size="50" placeholder="Gender">
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="weight" size="50" placeholder="Weight in kg (ex: 83kg)">
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="squat" size="50" placeholder="Max Squat in lbs (Do not include lbs)">
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="bench" size="50" placeholder="Max Bench in lbs (Do not include lbs)">
+            </div>
+
+            <div class="input-field">
+                <input type="text" name="deadlift" size="50" placeholder="Max Deadlift in lbs (Do not include lbs)">
+            </div>
+            
+            <div class="input-field">
+                <button id="create_powerlifter" class="btn btn-success" type="submit">Add Powerlifter!</button>
+            </div>
+        </form>
+    </div>
+</div>

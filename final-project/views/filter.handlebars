@@ -1,0 +1,80 @@
+<!-- Display each Powerlifter's name, weight class, and passed in lift. -->
+<div id="jumbotron">
+    <div class="jumbotron">
+        <h1 id="filter_header">{{header}}</h1>
+        <hr/>
+        <div class="row centered">
+            {{#each data}}
+            <div class="column">
+                <div id="{{this.firstname}}{{this.lastname}}" class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">{{this.firstname}} {{this.lastname}}</h2>
+                        <hr/>
+                        <h4 id="weight_{{this.firstname}}{{this.lastname}}">Weight Class: {{this.weightclass.weight}} kg</h4>
+                        <h4 id="display_{{this.firstname}}{{this.lastname}}"></h4>
+
+                        <!-- 
+                        Adds + after kg if plus is true.
+                        Determines which lift to display.
+                        Determiens which background image to use.
+                        -->
+                        <script>
+                            var text = ''
+                            var style = document.createElement('style');
+
+                            if('{{this.weightclass.plus}}' == 'true') {
+                                document.getElementById("weight_{{this.firstname}}{{this.lastname}}").innerHTML += "+";
+                            }
+                            if('{{this.display_info}}' == 'squat') {
+                                text = "Squat: {{this.squat}} lbs"
+                                style.innerHTML = `
+                                    body {
+                                        background-size: cover;
+                                        background-image: url('https://oldschoollabs.com/wp-content/uploads/2018/03/Tom-Platz.jpg');
+                                    }`;
+                                document.head.appendChild(style);
+                            }
+                            else if('{{this.display_info}}' == 'bench') {
+                                text = "Bench: {{this.bench}} lbs"
+                                style.innerHTML = `
+                                    body {
+                                        background-size: cover;
+                                        background-image: url('https://www.ironcompany.com/wp/wp-content/uploads/2018/02/image001-768x594.jpg');
+                                    }`;
+                                document.head.appendChild(style);
+                            }
+                            else if('{{this.display_info}}' == 'deadlift'){
+                                text = "Deadlift: {{this.deadlift}} lbs"
+                                style.innerHTML = `
+                                    body {
+                                        background-size: 105%;
+                                        background-image: url('https://4.bp.blogspot.com/-Mu8x-wQkVyw/Us2gUuPQ9TI/AAAAAAAACYs/c-nrzyZ38F0/s1600/franco+deadlift.jpg');
+                                    }`;
+                                document.head.appendChild(style);
+                            } 
+                            else {
+                                text = "Total: {{this.total}} lbs"
+                                style.innerHTML = `
+                                    body {
+                                        background-size: cover;
+                                        background-image: url('https://www.getbig.com/boards/index.php?action=dlattach;topic=455539.0;attach=501524;image');
+                                    }`;
+                                document.head.appendChild(style);
+                            }
+                            document.getElementById("display_{{this.firstname}}{{this.lastname}}").innerHTML = text;
+                        </script>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <!-- No data to display. -->
+            <div id="empty_database">
+                <h1>There are no logged Powerlifters yet... (Sad!)</h1>
+                <a href="/addPowerlifter">Add a Powerlifter!</a>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<!-- Set background based on lift -->

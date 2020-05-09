@@ -1,0 +1,86 @@
+<!-- Home Page. -->
+<script>
+    var style = document.createElement('style');
+    style.innerHTML = `
+        body {
+            background-image: url('https://images-na.ssl-images-amazon.com/images/I/81KbzpW2TPL._SY606_.jpg');
+        }`;
+    document.head.appendChild(style);
+</script>
+
+<div id="jumbotron">
+    <div class="jumbotron">
+        <h1 id="header">All Powerlifters</h1>
+
+        <!-- Search Bar that filters Powerlifters displayed. -->
+        <div id="searchbar">
+            <input id="filter" type="text" placeholder="Filter Powerlifters..."> 
+        </div>
+        <hr/>
+
+        <!-- Handles filtering -->
+        <script>
+            var names = "{{names}}".split(",")
+
+            // Executes everytime input to search bar is changed.
+            $('#filter').on('input',function(e){
+                let input = document.getElementById('filter').value.toLowerCase()
+                var filtered_names = []
+
+                // Determines if the input exists in the first or last name.
+                for(name of names) {
+                    var name_split = name.split(" ")
+                    var firstname = name_split[0].toLowerCase()
+                    var lastname = name_split[1].toLowerCase()
+                    if (firstname.includes(input) || lastname.includes(input)) { 
+                        filtered_names.push(name)
+                    } 
+                }
+                // Hides and shows appropriate elements.
+                for(name of names) {
+                    var name_split = name.split(" ")
+                    let curr = '#' + name_split[0] + name_split[1]
+                    filtered_names.includes(name) ? $(curr).show() : $(curr).hide()
+                }
+                // Determine if no names are being shown.
+                filtered_names.length == 0 ? $('#no_powerlifters').show() : $('#no_powerlifters').hide()
+            });
+        </script>
+
+        <!-- Display each Powerlifter's name, weight class, and best lifts. -->
+        {{#each data}}
+        <div id="entry">
+            <div id="{{this.firstname}}{{this.lastname}}" class="card">
+                <div class="card-body">
+                    <h1 id="entry_name" class="card-title">{{this.firstname}} {{this.lastname}}</h1>
+                    <hr/>
+                    <h4 id="weight_{{this.firstname}}{{this.lastname}}">Weight Class: {{this.weightclass.weight}} kg</h4>
+                    <h4>Squat: {{this.squat}} lbs</h4>
+                    <h4>Bench: {{this.bench}} lbs</h4>
+                    <h4>Deadlift: {{this.deadlift}} lbs</h4>
+
+                    <!-- Adds + after kg if plus is true -->
+                    <script>
+                        if('{{this.weightclass.plus}}' == 'true') {
+                            document.getElementById("weight_{{this.firstname}}{{this.lastname}}").innerHTML += "+";
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!-- Displayed when no Powerlifters match the filter. -->
+        <div id="no_powerlifters">
+            <h2>There are no Powerlifters with that name! </h2>
+        </div>
+
+        {{else}}
+
+        <!-- No data to display. -->
+        <div id="empty_database">
+            <h1>There are no logged Powerlifters yet... (Sad!)</h1>
+            <a href="/addPowerlifter">Add a Powerlifter!</a>
+        </div>
+        {{/each}}
+    </div>
+</div>

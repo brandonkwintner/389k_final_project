@@ -1,0 +1,63 @@
+<!-- Workouts Page. -->
+<script>
+    var style = document.createElement('style');
+    style.innerHTML = `
+        body {
+            background-size: cover;
+            background-image: url('https://www.bodybuilding.com/images/2017/october/high-end-gyms-vs-old-school-gyms-which-one-is-right-for-you-v2-2b-700xh.jpg');
+        }`;
+    document.head.appendChild(style);
+</script>
+
+<div id="jumbotron">
+    <div class="jumbotron">
+        <h1 id="header">Workouts</h1>
+        <hr/>
+        {{#each data}}
+            <div id="entry">
+            <div id="{{this.firstname}}{{this.lastname}}" class="card">
+                <div class="card-body">
+                    <h1 id="entry_name" class="card-title">{{this.firstname}} {{this.lastname}}</h1>
+                    <hr/>
+                    
+                    <!-- Display each workout. -->
+                    {{#each this.workouts}}
+                        <div id="workout_date">
+                            <h5>{{this.date}}</h4>
+                        </div>
+
+                        <h4 id="squat_{{this.id}}"></h4>
+                        <h4 id="bench_{{this.id}}"></h4>
+                        <h4 id="deadlift_{{this.id}}"></h4>
+
+                        <h4>Topset RPE: {{this.topset_RPE}}</h4>
+                        <hr/>
+
+                        <!-- Determine which lifts to display. -->
+                        <script>
+                            if('{{this.weight_squatted}}' != '') {
+                                text = "Weight Squatted: {{this.weight_squatted}} lbs"
+                                document.getElementById("squat_{{this.id}}").innerHTML = text;
+                            }
+                            if('{{this.weight_benched}}' != '') {
+                                text = "Weight Benched: {{this.weight_benched}} lbs"
+                                document.getElementById("bench_{{this.id}}").innerHTML = text;
+                            }
+                            if('{{this.weight_deadlifted}}' != ''){
+                                text = "Weight Deadlifted: {{this.weight_deadlifted}} lbs"
+                                document.getElementById("deadlift_{{this.id}}").innerHTML = text;
+                            } 
+                        </script>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <!-- No data to display. -->
+        <div id="empty_database">
+            <h2>There are no logged Powerlifters yet... (Sad!)</h2>
+            <a href="/addPowerlifter"><button id="addPowerlifter" class="btn btn-success navbar-btn">Add Powerlifter</button></a>
+        </div>
+        {{/each}}
+    </div>
+</div>
