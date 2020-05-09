@@ -11,7 +11,7 @@ Project Topic: Powerlifting Personal Records
 
 URL: http://localhost:3000 ### UPDATE WITH DEPLOYABLE LINK ! ###
 
-New NPM packages used: 
+# New NPM packages used: 
 - Moment.js
 - Bootstrap
 
