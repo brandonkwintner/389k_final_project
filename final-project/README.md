@@ -122,4 +122,5 @@ Navigation Filters
 4. Heaviest Benches -> `/heaviest_benches`
 5. Heaviest Deadlifts -> `/heaviest_deadlifts`
 6. Heaviest Totals -> `/heaviest_totals`
-7. About -> `/about`
+7. Chat -> `/chat`
+8. About -> `/about`
