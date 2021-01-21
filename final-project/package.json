@@ -22,7 +22,7 @@
         "mongoose": "^5.9.12",
         "morgan": "^1.10.0",
         "popper.js": "^1.16.1",
-        "socket.io": "^1.7.3",
+        "socket.io": "^2.4.0",
         "underscore": "^1.10.2"
     }
 }
